@@ -355,7 +355,7 @@ void setup()
 
     if (!SerialBT.begin("ESP32_EEG_Monitor", true))
     {
-        Serial.println("❌ Erreur init Bluetooth");
+        Serial.println("Erreur init Bluetooth");
         publishStatus("error", "Bluetooth initialization failed");
         while (1)
             ;
@@ -382,7 +382,7 @@ void setup()
 
     if (!connected)
     {
-        Serial.println("❌ Timeout connexion BITalino");
+        Serial.println("Timeout connexion BITalino");
         publishStatus("error", "Failed to connect to BITalino");
         while (1)
             ;
@@ -399,7 +399,7 @@ void setup()
     model = tflite::GetModel(g_model_data);
     if (model->version() != TFLITE_SCHEMA_VERSION)
     {
-        Serial.printf("❌ Version schema incompatible: %d vs %d\n",
+        Serial.printf("Version schema incompatible: %d vs %d\n",
                       model->version(), TFLITE_SCHEMA_VERSION);
         publishStatus("error", "TFLite schema version mismatch");
         while (1)
@@ -414,7 +414,7 @@ void setup()
 
     if (interpreter->AllocateTensors() != kTfLiteOk)
     {
-        Serial.println("❌ Échec allocation tenseurs");
+        Serial.println("Échec allocation tenseurs");
         publishStatus("error", "Failed to allocate tensors");
         while (1)
             ;
@@ -428,7 +428,7 @@ void setup()
 
     publishStatus("ready", "System initialized and ready for monitoring");
 
-    Serial.println("\n🚀 SYSTÈME PRÊT - Surveillance en cours...\n");
+    Serial.println("\nSYSTÈME PRÊT - Surveillance en cours...\n");
 }
 
 void loop()
